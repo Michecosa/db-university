@@ -42,12 +42,6 @@ Modellizzare la struttura di un database per memorizzare tutti i dati riguardant
 - cognome VARCHAR(50), NOT NULL
 - email VARCHAR(50), UNIQUE, NOT NULL
 
-### CorsiInsegnanti
-
-- id_corso INT, NOT NULL, FOREIGN KEY di Corsi(id_corso)
-- id_insegnante INT, NOT NULL, FOREIGN KEY di Insegnanti(id_insegnante)
-- PRIMARY KEY (id_corso, id_insegnante)
-
 ### AppelliEsame
 
 - id_appello INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
