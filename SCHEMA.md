@@ -16,56 +16,58 @@ Modellizzare la struttura di un database per memorizzare tutti i dati riguardant
 
 ### Dipartimenti
 
-- id_dipartimento
-- nome
-- descrizione
+- id_dipartimento INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
+- nome VARCHAR(50), UNIQUE, NOT NULL
+- descrizione TEXT, NULL
 
 ### CorsiLaurea
 
-- id_corso_laurea
-- nome
-- livello
-- id_dipartimento
+- id_corso_laurea INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
+- nome VARCHAR(50), NOT NULL
+- livello VARCHAR(50)
+- id_dipartimento INT, NOT NULL, FOREIGN KEY di Dipartimenti(id_dipartimento)
 
 ### Corsi
 
-- id_corso
-- nome
-- cfu
-- anno_di_corso
-- id_corso_di_laurea
+- id_corso INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
+- nome VARCHAR(50), NOT NULL
+- cfu INT, NOT NULL
+- anno_di_corso INT, NOT NULL
+- id_corso_di_laurea INT, NOT NULL, FOREIGN KEY di CorsiLaurea(id_corso_laurea)
 
 ### Insegnanti
 
-- id_insegnante
-- nome
-- cognome
-- email
+- id_insegnante INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
+- nome VARCHAR(50), NOT NULL
+- cognome VARCHAR(50), NOT NULL
+- email VARCHAR(50), UNIQUE, NOT NULL
 
 ### CorsiInsegnanti
 
-- id_corso
-- id_insegnante
+- id_corso INT, NOT NULL, FOREIGN KEY di Corsi(id_corso)
+- id_insegnante INT, NOT NULL, FOREIGN KEY di Insegnanti(id_insegnante)
+- PRIMARY KEY (id_corso, id_insegnante)
 
 ### AppelliEsame
 
-- id_appello
-- data_appello
-- aula
-- id_corso
+- id_appello INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
+- data_appello DATE, NOT NULL
+- aula VARCHAR(50), NULL
+- id_corso INT, NOT NULL, FOREIGN KEY di Corsi(id_corso)
 
 ### Studenti
 
-- id_studente
-- nome
-- cognome
-- matricola
-- email
-- id_corso_di_laurea
+- id_studente INT, PRIMARY KEY, AUTO_INCREMENT, NOT NULL
+- nome VARCHAR(50), NOT NULL
+- cognome VARCHAR(50), NOT NULL
+- matricola VARCHAR(20), UNIQUE, NOT NULL
+- email VARCHAR(50), UNIQUE, NOT NULL
+- id_corso_di_laurea INT, NOT NULL, FOREIGN KEY di CorsiLaurea(id_corso_laurea)
 
 ### IscrizioniEsami
 
-- id_studente
-- id_appello
-- voto
-- esito
+- id_studente INT, NOT NULL, FOREIGN KEY di Studenti(id_studente)
+- id_appello INT, NOT NULL, FOREIGN KEY di AppelliEsame(id_appello)
+- voto TINYINT, NULL
+- esito VARCHAR(20), NOT NULL
+- PRIMARY KEY (id_studente, id_appello)
