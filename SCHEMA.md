@@ -16,16 +16,56 @@ Modellizzare la struttura di un database per memorizzare tutti i dati riguardant
 
 ### Dipartimenti
 
+- id_dipartimento
+- nome
+- descrizione
+
 ### CorsiLaurea
+
+- id_corso_laurea
+- nome
+- livello
+- id_dipartimento
 
 ### Corsi
 
+- id_corso
+- nome
+- cfu
+- anno_di_corso
+- id_corso_di_laurea
+
 ### Insegnanti
+
+- id_insegnante
+- nome
+- cognome
+- email
 
 ### CorsiInsegnanti
 
+- id_corso
+- id_insegnante
+
 ### AppelliEsame
+
+- id_appello
+- data_appello
+- aula
+- id_corso
 
 ### Studenti
 
+- id_studente
+- nome
+- cognome
+- matricola
+- email
+- id_corso_di_laurea
+
 ### IscrizioniEsami
+
+- id_studente
+- id_appello
+- voto
+- esito
