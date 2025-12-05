@@ -22,11 +22,8 @@ ORDER BY exam_id;
 
 
 # Contare quanti corsi di laurea ci sono per ogni dipartimento
-SELECT d.id AS dipartimento_id,
-       d.name AS dipartimento,
-       COUNT(deg.id) AS numero_corsi_laurea
-FROM departments d
-JOIN degrees deg
-    ON deg.department_id = d.id
-GROUP BY d.id, d.name
-ORDER BY d.id;
+SELECT department_id,
+       COUNT(*) AS numero_corsi_laurea
+FROM degrees
+GROUP BY department_id
+ORDER BY department_id;
